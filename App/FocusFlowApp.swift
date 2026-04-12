@@ -6,12 +6,14 @@ import FirebaseAuth
 struct FocusFlowApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var authViewModel = AuthViewModel()
+    @StateObject private var themeManager = ThemeManager()
 
     var body: some Scene {
         WindowGroup {
             ContentRootView()
                 .environmentObject(authViewModel)
-                .preferredColorScheme(.dark)
+                .environmentObject(themeManager)
+                .preferredColorScheme(themeManager.preferredColorScheme)
         }
     }
 }
